@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hungryyy - Order Status</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF5A5F;
+            --secondary-color: #00A699;
+            --accent-color: #FC642D;
+            --dark-color: #2E2E2E;
+            --light-color: #F7F7F7;
+            --text-color: #484848;
+            --text-light: #767676;
+            --success-color: #00B14F;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 40px;
+            text-align: center;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .thank-you-message {
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .order-details-card {
+            background: #fdfdfd;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            text-align: left;
+        }
+        
+        .order-details-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .detail-item span:first-child {
+            font-weight: 500;
+        }
+        
+        .detail-item span:last-child {
+            color: var(--text-light);
+        }
+
+        .order-status-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .status-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .status-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        #order-items-summary {
+            padding-top: 10px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-total {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .back-to-menu-button {
+            margin-top: 30px;
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .back-to-menu-button:hover {
+            transform: translateY(-3px);
+            background-color: #00857a;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Hungryyy</div>
+            <div class="tagline">Scan, Order, Eat</div>
+        </div>
+
+        <h2 class="thank-you-message">Thank You for your Order!</h2>
+        
+        <div class="order-details-card">
+            <div class="order-status-section">
+                <i class="fas fa-clock status-icon"></i>
+                <span class="status-text" id="order-status">Order Confirmed</span>
+            </div>
+            
+            <div class="detail-item">
+                <span>Order No.:</span>
+                <span id="order-number">#12345</span>
+            </div>
+            <div class="detail-item">
+                <span>Table No.:</span>
+                <span id="table-number">5</span>
+            </div>
+        </div>
+
+        <div class="order-details-card">
+            <h3>Order Summary</h3>
+            <div id="order-items-summary">
+                </div>
+            <div class="summary-total">
+                <span>Total Amount:</span>
+                <span id="total-amount">₹0.00</span>
+            </div>
+        </div>
+
+        <a href="menu.html" class="back-to-menu-button">Back to Menu</a>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderDetailsString = localStorage.getItem('lastOrder');
+            
+            if (orderDetailsString) {
+                const order = JSON.parse(orderDetailsString);
+                
+                document.getElementById('order-number').textContent = `#${order.orderNumber}`;
+                document.getElementById('table-number').textContent = order.tableNumber;
+                document.getElementById('order-status').textContent = order.status;
+                document.getElementById('total-amount').textContent = `₹${order.totalPrice.toFixed(2)}`;
+                
+                const itemsSummaryContainer = document.getElementById('order-items-summary');
+                let itemsHtml = '';
+                
+                for (const itemName in order.items) {
+                    const item = order.items[itemName];
+                    itemsHtml += `
+                        <div class="summary-item">
+                            <span>${itemName} (x${item.quantity})</span>
+                            <span>₹${(item.price * item.quantity).toFixed(2)}</span>
+                        </div>
+                    `;
+                }
+                
+                itemsSummaryContainer.innerHTML = itemsHtml;
+
+                // Clear the order from local storage after displaying it
+                // localStorage.removeItem('lastOrder');
+                
+            } else {
+                document.querySelector('.container').innerHTML = `
+                    <div class="header">
+                        <div class="logo">Hungryyy</div>
+                    </div>
+                    <h2 class="thank-you-message">No order found.</h2>
+                    <a href="menu.html" class="back-to-menu-button">Start a New Order</a>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
