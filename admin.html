@@ -313,9 +313,12 @@
         </div>
     </div>
     
+    <audio id="new-order-sound" src="../sound/hotel-bell-ding-1-174457.mp3" preload="auto"></audio>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let orders = JSON.parse(localStorage.getItem('allOrders')) || [];
+            const newOrderSound = document.getElementById('new-order-sound');
 
             function renderOrders() {
                 // Clear all sections first
@@ -465,6 +468,10 @@
                             orders.push(newOrder);
                             localStorage.setItem('allOrders', JSON.stringify(orders));
                             renderOrders();
+                            // Play the notification sound for a new order
+                            newOrderSound.play().catch(error => {
+                                console.error('Failed to play audio:', error);
+                            });
                         }
                     }
                 }
